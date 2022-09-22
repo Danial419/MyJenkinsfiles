@@ -32,11 +32,7 @@ pipeline {
                     sh 'npm version'
             }
         }
-	    stage('test') {
-                 steps {
-                    sh './var/lib/jenkins/workspace/'
-            }
-        }
+	    
 	    
 	}
    
