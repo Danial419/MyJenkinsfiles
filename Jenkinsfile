@@ -32,6 +32,11 @@ pipeline {
                     sh 'npm version'
             }
         }
+	    stage('test') {
+                 steps {
+                    sh './jenkins/scrpts/test.sh'
+            }
+        }
 	    
 	}
    
