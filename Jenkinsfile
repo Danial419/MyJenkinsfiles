@@ -34,7 +34,7 @@ pipeline {
         }
 	    stage('test') {
                  steps {
-                    sh './var/lib/jenkins/workspace/simple-node-js-is-react-npm-app'
+                    sh './var/lib/jenkins/workspace/'
             }
         }
 	    
