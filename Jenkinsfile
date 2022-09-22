@@ -14,12 +14,7 @@ pipeline {
             }
         }
         
-        stage('Testing') {
-            steps {
-                sh './jenkins/scripts/test.sh
-            }
-        
-    }
+       
      
         stage('Maintaince') {
             steps {
