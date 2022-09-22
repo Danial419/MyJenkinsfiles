@@ -16,7 +16,7 @@ pipeline {
         
         stage('Testing') {
             steps {
-                echo 'Testing...'
+                sh './jenkins/scripts/test.sh
             }
         
     }
@@ -34,7 +34,7 @@ pipeline {
         }
 	    stage('build') {
                  steps {
-                    sh 'npm install'
+                    sh 'npm version'
             }
         }
 	    
