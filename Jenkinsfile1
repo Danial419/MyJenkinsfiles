@@ -1,16 +1,47 @@
 pipeline {
     agent any
-
-    stages {
-        stage('Build a word') {
+	environment {
+  		RELEASE_NOTES = sh (script: """git log -1 --pretty=format:%s""",  returnStdout:true)
+		IAM_COMMIT = 'build' 
+		runSonarScan = true
+		deployNexusArtifact = true
+}
+	stages {
+   
+        stage('Deploy') {
+		
+		when { expression { "${RELEASE_NOTES}" == 'build' } }
             steps {
-                echo 'Hello Linux...'
+                echo 'Deploying...'
             }
         }
-    
-    
-      
+        
+        stage('Testing') {
+		when { expression { "${runSonarScan}" == 'true' } }
+            steps {
+                echo 'Testing...'
+            }
+        
+    }
+     
+        stage('Maintaince') {
+            steps {
+                echo 'Maintaince..'
+            }
+        }
 	    
+	 stage('Release') {
+		 when { expression { "${deployNexusArtifact}" == 'false' } }
+            steps {
+                echo 'Releasing...'
+            }
+        }
+	    stage('anss') {
+		 when { expression { "${deployNexusArtifact}" == 'true'} }
+            steps {
+                echo 'anasing...'
+            }
+        }
 	}
    
 }
